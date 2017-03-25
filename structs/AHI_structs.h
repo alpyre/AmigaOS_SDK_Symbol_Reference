@@ -47,9 +47,9 @@ struct AHIRecordMessage
 /* AHISampleInfo */
 struct AHISampleInfo
 {
- ULONG ahisi_Type;        /* Format of samples */
- APTR  ahisi_Address;    /* Address to array of samples */
- ULONG ahisi_Length;      /* Number of samples in array */
+ ULONG ahisi_Type;         /* Format of samples */
+ APTR  ahisi_Address;      /* Address to array of samples */
+ ULONG ahisi_Length;       /* Number of samples in array */
 };
 
 /* AHIAudioModeRequester */
@@ -58,20 +58,20 @@ struct AHIAudioModeRequester
  ULONG ahiam_AudioID;      /* Selected audio mode */
  ULONG ahiam_MixFreq;      /* Selected mixing/sampling frequency */
 
- WORD  ahiam_LeftEdge;      /* Coordinates of requester on exit */
+ WORD  ahiam_LeftEdge;     /* Coordinates of requester on exit */
  WORD  ahiam_TopEdge;
  WORD  ahiam_Width;
  WORD  ahiam_Height;
 
- BOOL  ahiam_InfoOpened;    /* Info window opened on exit? */
- WORD  ahiam_InfoLeftEdge;  /* Last coordinates of Info window */
+ BOOL  ahiam_InfoOpened;   /* Info window opened on exit? */
+ WORD  ahiam_InfoLeftEdge; /* Last coordinates of Info window */
  WORD  ahiam_InfoTopEdge;
  WORD  ahiam_InfoWidth;
  WORD  ahiam_InfoHeight;
 
  UWORD ahiam_ObsoleteUserData[2];
  UWORD ahiam_Pad;
- APTR  ahiam_UserData;      /* You can store your own data here (V6) */
+ APTR  ahiam_UserData;     /* You can store your own data here (V6) */
  /* Lots of private data follows! */
 };
 
@@ -85,12 +85,12 @@ struct AHIEffMasterVolume
 /* AHIEffOutputBuffer */
 struct AHIEffOutputBuffer
 {
- ULONG    ahie_Effect;      /* Set to AHIET_OUTPUTBUFFER */
+ ULONG    ahie_Effect;     /* Set to AHIET_OUTPUTBUFFER */
  struct Hook  *ahieob_Func;
  /* These fields are filled by AHI */
- ULONG    ahieob_Type;      /* Format of buffer */
- APTR     ahieob_Buffer;    /* Pointer to the sample array */
- ULONG    ahieob_Length;    /* Number of sample frames in buffer */
+ ULONG    ahieob_Type;     /* Format of buffer */
+ APTR     ahieob_Buffer;   /* Pointer to the sample array */
+ ULONG    ahieob_Length;   /* Number of sample frames in buffer */
 };
 
 /* AHIEffDSPMask (V4) */
@@ -98,14 +98,14 @@ struct AHIEffDSPMask
 {
  ULONG ahie_Effect;        /* Set to AHIET_DSPMASK */
  UWORD ahiedm_Channels;    /* Number of elements in array */
- UBYTE ahiedm_Mask[0];      /* Here follows the array */
+ UBYTE ahiedm_Mask[0];     /* Here follows the array */
 };
 
 /* AHIEffDSPEcho (V4) */
 struct AHIEffDSPEcho
 {
  ULONG ahie_Effect;        /* Set to AHIET_DSPECHO */
- ULONG ahiede_Delay;        /* In samples */
+ ULONG ahiede_Delay;       /* In samples */
  Fixed ahiede_Feedback;
  Fixed ahiede_Mix;
  Fixed ahiede_Cross;
@@ -119,14 +119,14 @@ struct AHIEffChannelInfo
  UWORD        ahieci_Channels;
  UWORD        ahieci_Pad;
  /* The rest is filled by AHI */
- ULONG        ahieci_Offset[0];  /* The array follows */
+ ULONG        ahieci_Offset[0];   /* The array follows */
 };
 
 /* AHIUnitPrefs */
 struct AHIUnitPrefs
 {
  UBYTE  ahiup_Unit;
- UBYTE   ahiup_Obsolete;        /* Was ahiup_ScaleMode */
+ UBYTE   ahiup_Obsolete;          /* Was ahiup_ScaleMode */
        UWORD  ahiup_Channels;
        ULONG  ahiup_AudioMode;
        ULONG  ahiup_Frequency;
@@ -147,8 +147,8 @@ struct AHIGlobalPrefs
  Fixed ahigp_MaxCPU;
  BOOL  ahigp_ClipMasterVolume;
  UWORD ahigp_Pad;
- Fixed ahigp_AntiClickTime;    /* In seconds (V6) */
- UWORD ahigp_ScaleMode;        /* See below (V6) */
+ Fixed ahigp_AntiClickTime;     /* In seconds (V6) */
+ UWORD ahigp_ScaleMode;         /* See below (V6) */
 };
 
 /* AHIRequest */
@@ -158,12 +158,12 @@ struct AHIRequest
  UWORD           ahir_Version;  /* Needed version */
  /* --- New for V4, they will be ignored by V2 and earlier --- */
  UWORD       ahir_Pad1;
- ULONG       ahir_Private[2];    /* Hands off! */
- ULONG       ahir_Type;          /* Sample format */
+ ULONG       ahir_Private[2];   /* Hands off! */
+ ULONG       ahir_Type;         /* Sample format */
  ULONG       ahir_Frequency;    /* Sample/Record frequency */
- Fixed       ahir_Volume;        /* Sample volume */
- Fixed       ahir_Position;      /* Stereo position */
- struct AHIRequest *ahir_Link; /* For double buffering */
+ Fixed       ahir_Volume;       /* Sample volume */
+ Fixed       ahir_Position;     /* Stereo position */
+ struct AHIRequest *ahir_Link;  /* For double buffering */
 };
 
 /* AHIAudioCtrlDrv */
@@ -172,25 +172,25 @@ struct AHIAudioCtrlDrv
  struct AHIAudioCtrl ahiac_AudioCtrl;
  ULONG               ahiac_Flags;          /* See below for definition  */
  struct Hook        *ahiac_SoundFunc;      /* AHIA_SoundFunc    */
- struct Hook        *ahiac_PlayerFunc;      /* AHIA_PlayerFunc    */
- Fixed               ahiac_PlayerFreq;      /* AHIA_PlayerFreq    */
+ struct Hook        *ahiac_PlayerFunc;     /* AHIA_PlayerFunc    */
+ Fixed               ahiac_PlayerFreq;     /* AHIA_PlayerFreq    */
  Fixed               ahiac_MinPlayerFreq;  /* AHIA_MinPlayerFreq    */
  Fixed               ahiac_MaxPlayerFreq;  /* AHIA_MaxPlayerFreq    */
  ULONG               ahiac_MixFreq;        /* AHIA_MixFreq      */
- UWORD               ahiac_Channels;        /* AHIA_Channels    */
- UWORD               ahiac_Sounds;          /* AHIA_Sounds      */
+ UWORD               ahiac_Channels;       /* AHIA_Channels    */
+ UWORD               ahiac_Sounds;         /* AHIA_Sounds      */
 
- APTR                ahiac_DriverData;      /* Unused. Store whatever you want here. */
+ APTR                ahiac_DriverData;     /* Unused. Store whatever you want here. */
 
- struct Hook *ahiac_MixerFunc;         /* Mixing routine Hook    */
- struct Hook *ahiac_SamplerFunc;       /* Sampler routine Hook    */
+ struct Hook *ahiac_MixerFunc;        /* Mixing routine Hook    */
+ struct Hook *ahiac_SamplerFunc;      /* Sampler routine Hook    */
  ULONG        ahiac_Obsolete;
- ULONG        ahiac_BuffSamples;       /* Samples to mix this pass.  */
+ ULONG        ahiac_BuffSamples;      /* Samples to mix this pass.  */
  ULONG        ahiac_MinBuffSamples;   /* Min. samples to mix each pass. */
  ULONG        ahiac_MaxBuffSamples;   /* Max. samples to mix each pass. */
  ULONG        ahiac_BuffSize;         /* Buffer size ahiac_MixerFunc needs. */
  ULONG        ahiac_BuffType;         /* Buffer format (V2)    */
- BOOL       (*ahiac_PreTimer)(void);   /* Call before mixing (V4)  */
+ BOOL       (*ahiac_PreTimer)(void);  /* Call before mixing (V4)  */
  void       (*ahiac_PostTimer)(void); /* Call after mixing (V4)  */
  ULONG        ahiac_AntiClickSamples; /* AntiClick samples (V6)  */
  struct Hook *ahiac_PreTimerFunc;     /* A Hook wrapper for ahiac_PreTimer (V6) */
