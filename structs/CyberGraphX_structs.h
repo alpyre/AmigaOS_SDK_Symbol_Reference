@@ -6,7 +6,7 @@ struct CDrawMsg
 
 /******************************************************************************/
 
-/*  Definition of CyberModeNode (Returned in AllocModeList) */
+/* Definition of CyberModeNode (Returned in AllocModeList) */
 struct CyberModeNode
 {
   struct Node Node;
@@ -30,4 +30,31 @@ struct CDrawMsg
   UWORD cdm_BytesPerRow;
   UWORD cdm_BytesPerPix;
   UWORD cdm_ColorModel;
+};
+
+/******************************************************************************/
+/******************************************************************************/
+
+CGXVideo structs from cgxvideo_intern.h
+
+List of CGXVideo structs:
+struct IntCGXVBase
+struct VLayerHandle
+
+/******************************************************************************/
+
+/* Definition of CGXVideo library base */
+struct IntCGXVBase
+{
+  struct Library     libnode;
+  OOP_AttrBase       HiddBitMapAttrBase;
+  OOP_AttrBase       HiddOverlayAttrBase;
+  struct OOP_ABDescr attrbases[3];
+};
+
+/* struct returned by CreateVLayerHandleTagList() */
+struct VLayerHandle
+{
+  OOP_Object *obj;	/* Overlay object	  */
+  OOP_Object *drv;	/* Graphics driver object */
 };
